@@ -1,7 +1,5 @@
 // Router file for React. Server & Client. :)
 import React, {Component} from 'react';
-import { hot } from 'react-hot-loader';
-import ReactDOM from 'react-dom';
 
 // Pages
 import Index from '../../pages/index/index.jsx';
@@ -9,9 +7,11 @@ import About from '../../pages/about/about.jsx';
 
 // Utils
 import history from '../../utils/lib/history.js';
+import isOnClient from '../../utils/lib/isOnClient.js';
 
-if (process.env.WEBPACK) {
-  //require('./app.scss');
+if (isOnClient) {
+  require('../../utils/styles.scss');
+  require('./app.scss');
 }
 
 const ROUTES = {
@@ -50,4 +50,4 @@ class App extends Component {
   }
 }
 
-export default hot(module)(App);
+export default App;

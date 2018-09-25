@@ -1,18 +1,17 @@
 // Serves hot files at localhost:8081
 const path = require('path');
 const webpack = require('webpack');
-const webpackDevServer = require('webpack-dev-server');
+const WebpackDevServer = require('webpack-dev-server');
 
 const hostname = 'localhost';
 const port = 8081;
 const webpackBase = 'http://' + hostname + ':' + port;
-const env = process.env.NODE_ENV == "production"?"production":'development';
 
 const config = {
-  mode: env,
+  mode: 'development',
   entry: './src/client.jsx',
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, './dist'),
     publicPath: webpackBase + '/',
     filename: 'dev-bundle.js'
   },
@@ -23,29 +22,20 @@ const config = {
         exclude: /node_modules/,
         use: ['babel-loader']
       },
-      /*{ // SCSS -> CSS in JS bundle
-        test: /\.s?css$/i,
-        use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader'
-        }, {
-          loader: 'sass-loader',
-          options: {
-            includePaths: [path.resolve(__dirname, '../src')]
-          }
-        }]
+      { // Sass -> Css injected
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       { // Assets -> JS bundle
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        include: path.resolve(__dirname, '../app/assets'),
+        include: path.resolve(__dirname, '../src/assets'),
         use: ['file-loader']
-      },*/
+      },
     ]
   },
   plugins: [
 
-  ]
+  ],
 }
 
 const compiler = webpack(config);
@@ -56,8 +46,8 @@ const options = {
     "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
   }
 }
-const devServer = new webpackDevServer(compiler, options);
+const webpackDevServer = new WebpackDevServer(compiler, options);
 
-devServer.listen(port, hostname, () => {
+webpackDevServer.listen(port, hostname, () => {
   console.info('Webpack serving updates at ' + webpackBase + ', remember to build before pushing.');
 });
