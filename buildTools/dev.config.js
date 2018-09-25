@@ -2,6 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const hostname = 'localhost';
 const port = 8081;
@@ -34,7 +35,7 @@ const config = {
     ]
   },
   plugins: [
-
+    new LiveReloadPlugin()
   ],
 }
 
