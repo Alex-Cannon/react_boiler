@@ -1,0 +1,13 @@
+$colors: (
+  text-dark: #202020,
+  text-light: #fff,
+  text-med: #ddd
+);
+
+@function colors($color) {
+  @if map-has-key($colors, $color) {
+    @return map-get($colors, $color);
+  }
+
+  @warn "Unknown "#{$color}" in $colors";
+}

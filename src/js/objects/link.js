@@ -1,7 +1,7 @@
-import React from 'react';
-import history from '../../utils/lib/history.js';
+import React, {Component} from 'react';
+import history from '../utils/lib/history.js';
 
-export default class Link extends React.Component {
+export default class Link extends Component {
   onClick(e) {
     const newTab = e.metaKey || e.ctrlKey;
     const externalLink = this.props.href.startsWith('http');

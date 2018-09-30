@@ -10,9 +10,9 @@ const webpackBase = 'http://' + hostname + ':' + port;
 
 const config = {
   mode: 'development',
-  entry: './src/client.jsx',
+  entry: './src/js/client.js',
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, '../dist'),
     publicPath: webpackBase + '/',
     filename: 'dev-bundle.js'
   },
@@ -33,6 +33,9 @@ const config = {
         use: ['file-loader']
       },
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.scss']
   },
   plugins: [
     new LiveReloadPlugin()

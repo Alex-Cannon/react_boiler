@@ -1,19 +1,19 @@
 import path from 'path';
 import React from 'react';
 import {renderToString, renderToStaticMarkup} from 'react-dom/server';
-import Html from '../components/Html/Html.jsx';
-import App from '../components/App/App.jsx';
+import Html from '../components/html';
+import App from '../components/App';
 
-let jsFile;
-let styleString = '';
+let jsFile = "";
+let livereload = "";
 
 if (process.env.NODE_ENV == 'production') {
-
   // Use compiled, minified index.html, bundle.js, & main.css files
-
+  jsFile = '/assets/script.js';
 } else {
   // Use "hot" files from webpackDevSerer
   jsFile = 'http://localhost:8081/dev-bundle.js';
+  livereload = "http://localhost:35729/livereload.js";
 }
 
 function generateHtml(req, res) {
@@ -26,7 +26,7 @@ function generateHtml(req, res) {
     <Html
       innerContent={innerContent}
       jsFile={jsFile}
-      styleString={''}
+      livereload={livereload}
     />
   );
 

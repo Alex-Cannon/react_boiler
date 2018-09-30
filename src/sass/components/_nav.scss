@@ -1,0 +1,49 @@
+nav {
+  position: fixed;
+  width: 100%;
+  height: 3rem;
+  padding: 0 5rem;
+  background-color: colors(text-dark);
+  color: colors(text-light);
+  a {
+    display: inline-block;
+    padding: 1rem 2rem;
+    color: colors(text-light);
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      background: colors(text-light);
+      color: colors(text-dark);
+    }
+  }
+}
+
+.burger-container {
+  position: absolute;
+  right: 5rem;
+  display: inline-block;
+  align-self: flex-end;
+  width: 2.5rem;
+  height: 3rem;
+  &:hover {
+    cursor: pointer;
+    span {
+      background-color: colors(text-med);
+    }
+  }
+  span {
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    background-color: colors(text-light);
+  }
+  span:first-of-type {
+    top: 9px;
+  }
+  span:nth-of-type(2) {
+    top: calc(1.5rem - 2.5px);
+  }
+  span:nth-of-type(3) {
+    bottom: 9px;
+  }
+}

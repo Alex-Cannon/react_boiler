@@ -2,21 +2,26 @@
 import React, {Component} from 'react';
 
 // Pages
-import Index from '../../pages/index/index.jsx';
-import About from '../../pages/about/about.jsx';
+import Index from '../pages/index.js';
+import Signup from '../pages/signup.js';
+import Login from '../pages/login.js';
+
+// Components
+import Nav from './nav.js';
 
 // Utils
-import history from '../../utils/lib/history.js';
-import isOnClient from '../../utils/lib/isOnClient.js';
-
-if (isOnClient) {
-  require('../../utils/styles.scss');
-  require('./app.scss');
-}
+import history from '../utils/lib/history.js';
+import isOnClient from '../utils/lib/isOnClient';
+// api
 
 const ROUTES = {
   '/': Index,
-  '/about': About
+  '/signup': Signup,
+  '/login': Login
+}
+
+if (isOnClient) {
+  require('../../sass/style.scss');
 }
 
 // Router for server & client
@@ -26,7 +31,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      pathname: this.props.pathname
+      pathname: this.props.pathname,
+      user: undefined
     }
   }
 
@@ -43,8 +49,10 @@ class App extends Component {
 
     return (
       <div>
-        <nav>Navigation</nav>
-        <Handler/>
+        <Nav/>
+        <div className="content-wrapper">
+          <Handler/>
+        </div>
       </div>
     );
   }
