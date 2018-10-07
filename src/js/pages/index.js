@@ -4,7 +4,7 @@ class Index extends Component {
   render () {
     return (
       <div>
-        I'm the Index page! :)
+        I'm the Index page! :) heyo boi
       </div>
     );
   }

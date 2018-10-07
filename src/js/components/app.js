@@ -12,7 +12,7 @@ import Nav from './nav.js';
 // Utils
 import history from '../utils/lib/history.js';
 import isOnClient from '../utils/lib/isOnClient';
-// api
+import '../../scss/style.scss';
 
 const ROUTES = {
   '/': Index,
@@ -20,9 +20,7 @@ const ROUTES = {
   '/login': Login
 }
 
-if (isOnClient) {
-  require('../../sass/style.scss');
-}
+
 
 // Router for server & client
 // req.url from server, location.pathname from client
@@ -38,6 +36,8 @@ class App extends Component {
 
   componentDidMount() {
     console.info('App loaded in:' + Math.round(performance.now()));
+
+    document.getElementById("loading-screen").remove();
 
     history.onChange((pathname) => {
       this.setState({pathname});

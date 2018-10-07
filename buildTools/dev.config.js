@@ -2,18 +2,18 @@
 const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
-const hostname = 'localhost';
+const hostname = "localhost";
 const port = 8081;
-const webpackBase = 'http://' + hostname + ':' + port;
+const webpackBase = 'http://' + hostname + ':' + port + '/';
 
 const config = {
   mode: 'development',
   entry: './src/js/client.js',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    publicPath: webpackBase + '/',
+    publicPath: webpackBase,
     filename: 'dev-bundle.js'
   },
   module: {
@@ -38,8 +38,10 @@ const config = {
     extensions: ['.js', '.jsx', '.scss']
   },
   plugins: [
-    new LiveReloadPlugin()
-  ],
+    new htmlWebpackPlugin({
+      template: './src/js/server/index.html'
+    })
+  ]
 }
 
 const compiler = webpack(config);

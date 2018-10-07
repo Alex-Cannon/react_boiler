@@ -19,7 +19,6 @@ export default class Html extends React.Component {
           />
 
           <script type="text/jsx" src={this.props.jsFile}></script>
-          {/*<script src={this.props.livereload}></script>*/}
         </body>
       </html>
     );
